@@ -82,16 +82,4 @@ export class StudentService {
       throw error;
     }
   }
-
-  /**
-   * Deletes a student from the database
-   * @param id - The ID of the student to delete
-   * @returns The deleted student
-   * @throws NotFoundException if student doesn't exist
-   */
-  async remove(id: number): Promise<Student> {
-    const student = await this.findOne(id);
-    
-    return await this.studentRepository.remove(student);
-  }
 } 
