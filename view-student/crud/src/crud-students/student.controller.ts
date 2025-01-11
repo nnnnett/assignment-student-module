@@ -1,7 +1,6 @@
-import { Controller, Post, Get, Put, Delete, Body, Param, ParseIntPipe } from '@nestjs/common';
+import { Controller, Post, Get, Body, Param, ParseIntPipe } from '@nestjs/common';
 import { StudentService } from './student.service';
 import { CreateStudentDto } from './dto/create-student.dto';
-import { UpdateStudentDto } from './dto/update-student.dto';
 import { Student } from './entities/student.entity';
 
 @Controller('students')
@@ -21,18 +20,5 @@ export class StudentController {
   @Get(':id')
   findOne(@Param('id', ParseIntPipe) id: number): Promise<Student> {
     return this.studentService.findOne(id);
-  }
-
-  @Put(':id')
-  update(
-    @Param('id', ParseIntPipe) id: number,
-    @Body() updateStudentDto: UpdateStudentDto,
-  ): Promise<Student> {
-    return this.studentService.update(id, updateStudentDto);
-  }
-
-  @Delete(':id')
-  remove(@Param('id', ParseIntPipe) id: number): Promise<Student> {
-    return this.studentService.remove(id);
   }
 } 
